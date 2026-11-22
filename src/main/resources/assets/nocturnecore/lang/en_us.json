@@ -1,3 +1,7 @@
 {
-  "item.nocturnecore.raw_tin": "Raw Tin"
+  "item.nocturnecore.raw_tin": "Raw Tin",
+
+  "block.nocturnecore.raw_tin_block": "Block of Raw Tin",
+  "block.nocturnecore.tin_ore": "Tin Ore",
+  "block.nocturnecore.deepslate_tin_ore": "Deepslate Tin Ore"
 }

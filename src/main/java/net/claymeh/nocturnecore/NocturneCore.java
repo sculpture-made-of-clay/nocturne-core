@@ -1,5 +1,6 @@
 package net.claymeh.nocturnecore;
 
+import net.claymeh.nocturnecore.block.ModBlocks;
 import net.claymeh.nocturnecore.item.ModItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -29,6 +30,7 @@ public class NocturneCore {
 
         NeoForge.EVENT_BUS.register(this);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 
@@ -46,6 +48,12 @@ public class NocturneCore {
                     new ItemStack(ModItems.RAW_TIN.get()),
                     CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
             );
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModBlocks.TIN_ORE);
+            event.accept(ModBlocks.DEEPSLATE_TIN_ORE);
+            event.accept(ModBlocks.RAW_TIN_BLOCK);
         }
     }
 
