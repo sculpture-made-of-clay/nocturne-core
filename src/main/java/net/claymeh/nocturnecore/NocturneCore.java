@@ -1,5 +1,8 @@
 package net.claymeh.nocturnecore;
 
+import net.claymeh.nocturnecore.item.ModItems;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.world.item.*;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -8,10 +11,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -39,6 +38,7 @@ public class NocturneCore {
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.register(this);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 
@@ -50,7 +50,13 @@ public class NocturneCore {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.insertAfter(
+                    new ItemStack(Items.RAW_GOLD),
+                    new ItemStack(ModItems.RAW_TIN.get()),
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
+            );
+        }
     }
 
     @SubscribeEvent
